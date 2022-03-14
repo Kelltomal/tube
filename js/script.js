@@ -8,8 +8,11 @@ let time = document.querySelector(".timeline");          // Получаем э�
 let btnPlay = document.querySelector(".play");           // Получаем кнопку проигрывания
 let btnRewind = document.querySelector(".rewind");       // Получаем кнопки перемотки назад
 let btnForward = document.querySelector(".forward");     // Получаем кнопку перемотки вперёд
+let btnLoop = document.querySelector(".loop");     // Получаем кнопку loop
+let txtduration = document.querySelector(".currenttime");     // Получаем кнопку Duration
 //Функция запуска/остановки видео
 function FuncPlay() {
+	txtduration.text = video.duration;	
     if (playing) {
         playing = false
         video.pause(); // Останавливает воспроизведение
@@ -47,4 +50,15 @@ let posX = e.clientX - 8; // Вычисляем позицию нажатия
 let timePos = (posX * 100) / 800; // Вычисляем процент перемотки
 time.style.width = timePos + '%'; // Присваиваем процент перемотки
 video.currentTime = (timePos * Math.round(video.duration)) / 100 // Перематываем
+});
+// Нажимаем на кнопку loop
+btnLoop.addEventListener("click", function() {
+	video.toggleAttribute("loop")
+	if (video.loop == false) {
+		console.log(video.currentTime);
+		btnLoop.className = "loop2";
+	} else {
+		console.log("false");
+		btnLoop.className = "loop";
+	}
 });
