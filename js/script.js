@@ -1,75 +1,34 @@
-let playing = false;
-let video = document.getElementById("video");            // Получаем элемент video
-let WidthButton = video.offsetWidth/4;					 // Размер кнопок
-//let btnSrnRewind = document.querySelector(".srnrewind");	 // Получаем кнопки перемотки назад
-//let btnSrnForward = document.querySelector(".srnforward");	 // Получаем кнопки перемотки вперёд
-let videoTrack = document.querySelector(".video-track"); // Получаем элемент Видеодорожки
-let time = document.querySelector(".timeline");          // Получаем элемент времени видео
-let btnPlay = document.querySelector(".play");           // Получаем кнопку проигрывания
-let btnRewind = document.querySelector(".rewind");       // Получаем кнопки перемотки назад
-let btnForward = document.querySelector(".forward");     // Получаем кнопку перемотки вперёд
-let btnLoop = document.querySelector(".loop");     // Получаем кнопку loop
-const timerWrapper = document.querySelector('.timer');
-const timer = document.querySelector('.timer span');
-const timerBar = document.querySelector('.timer div');
-//Функция запуска/остановки видео
-function FuncPlay() {
-	txtduration.text = video.duration;	
-function playPauseMedia() {
-  if(media.paused) {
-    play.setAttribute('data-icon','u');
-    media.play();
+const videoPlayer = document.querySelector('.video-player')
+const video = document.querySelector('.video')
+const playButton = document.querySelector('.play-button')
+const volume = videoPlayer.querySelector('.volume')
+const currentTimeElement = video.querySelector('.current')
+const durationTimeElement = video.querySelector('.duration')
+
+//Play and Pause button
+playButton.addEventListener('click', (e) => {
+  if(video.paused){
+    video.play()
+    e.target.textContent = "◼"
   } else {
-    play.setAttribute('data-icon','P');
-    media.pause();
+    video.pause()
+    e.target.textContent = "▶"
   }
+})
+//volume
+volume.addEventListener('mousemove', (e)=> {
+  video.volume = e.target.value
+})
+
+//current time and duration
+const currentTime = () => {
+  let currentMinutes =  Math.floor(video.currentTime / 60)
+  let currentSeconds =  Math.floor(video.currentTime - currentMinutes * 60)
+  let durationMinutes =  Math.floor(video.duration / 60)
+  let durationSeconds =  Math.floor(video.duration - durationMinutes * 60)
+
+  currentTimeElement.innerHTML = `${currentMinutes}:${currentSeconds}`
+  durationTimeElement.innerHTML = `${durationMinutes}:${durationSeconds}`
 }
-    if (playing) {
-        playing = false
-        video.pause(); // Останавливает воспроизведение
-        clearInterval(videoPlay) // убирает работу интервала
-    } else {
-        playing = true
-        video.play(); // Запуск проигрывания
-        // Запуск интервала
-        videoPlay = setInterval(function() {
-                // Создаём переменную времени видел
-                let videoTime = Math.round(video.currentTime)
-                // Создаём переменную всего времени видео
-                let videoLength = Math.round(video.duration)
-                // Вычисляем длину дорожки
-                time.style.width = (videoTime * 100) / videoLength + '%';
-        }, 10)
-    }
-}
-// Видос
-video.addEventListener("click", FuncPlay);
-// Плей
-btnPlay.addEventListener("click", FuncPlay);
-// Нажимаем на кнопку перемотать назад
-btnRewind.addEventListener("click", function() {
-    video.currentTime -= 1; // Уменьшаем время на пять секунд
-});
-    
-// Нажимаем на кнопку перемотать вперёд
-btnForward.addEventListener("click", function() {
-    video.currentTime += 1; // Увеличиваем время на пять секунд
-});
-// Переход по дорожке
-videoTrack.addEventListener("click", function(e) {
-let posX = e.clientX - 8; // Вычисляем позицию нажатия
-let timePos = (posX * 100) / 800; // Вычисляем процент перемотки
-time.style.width = timePos + '%'; // Присваиваем процент перемотки
-video.currentTime = (timePos * Math.round(video.duration)) / 100 // Перематываем
-});
-// Нажимаем на кнопку loop
-btnLoop.addEventListener("click", function() {
-	video.toggleAttribute("loop")
-	if (video.loop == false) {
-		console.log(video.currentTime);
-		btnLoop.className = "loop2";
-	} else {
-		console.log("false");
-		btnLoop.className = "loop";
-	}
-});
+
+video.addEventListener('timeupdate', currentTime)
