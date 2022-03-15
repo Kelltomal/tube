@@ -22,13 +22,14 @@ volume.addEventListener('mousemove', (e)=> {
 
 //current time and duration
 const currentTime = () => {
-  let currentMinutes =  Math.floor(video.currentTime / 60)
+  console.log(video.currentTime);
+  /*let currentMinutes =  Math.floor(video.currentTime / 60)
   let currentSeconds =  Math.floor(video.currentTime - currentMinutes * 60)
   let durationMinutes =  Math.floor(video.duration / 60)
   let durationSeconds =  Math.floor(video.duration - durationMinutes * 60)
 
-  currentTimeElement.innerHTML = "lol" //{currentMinutes}:${currentSeconds}`
-  durationTimeElement.innerHTML = "lol"//`${durationMinutes}:${durationSeconds}`
+  currentTimeElement.innerHTML = `${currentMinutes}:${currentSeconds}`
+  durationTimeElement.innerHTML = `${durationMinutes}:${durationSeconds}`*/
 }
 
 video.addEventListener('timeupdate', currentTime)
