@@ -9,7 +9,7 @@ let btnPlay = document.querySelector(".play");           // Получаем к�
 let btnRewind = document.querySelector(".rewind");       // Получаем кнопки перемотки назад
 let btnForward = document.querySelector(".forward");     // Получаем кнопку перемотки вперёд
 let btnLoop = document.querySelector(".loop");     // Получаем кнопку loop
-let txtduration = document.querySelector(".currenttime");     // Получаем кнопку Duration
+let txtduration = document.querySelector(".timer");     // Получаем кнопку Duration
 //Функция запуска/остановки видео
 function FuncPlay() {
 	txtduration.text = video.duration;	
