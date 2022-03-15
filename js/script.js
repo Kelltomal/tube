@@ -20,6 +20,8 @@ volume.addEventListener('mousemove', (e)=> {
   video.volume = e.target.value
 })
 
+video.addEventListener('timeupdate', currentTime)
+
 //current time and duration
 const currentTime = () => {
   let currentMinutes =  Math.floor(video.currentTime / 60)
@@ -30,5 +32,3 @@ const currentTime = () => {
   currentTimeElement.innerHTML = `${currentMinutes}:${currentSeconds}`
   durationTimeElement.innerHTML = `${durationMinutes}:${durationSeconds}`
 }
-
-video.addEventListener('timeupdate', currentTime)
