@@ -15,6 +15,15 @@ const timerBar = document.querySelector('.timer div');
 //Функция запуска/остановки видео
 function FuncPlay() {
 	txtduration.text = video.duration;	
+function playPauseMedia() {
+  if(media.paused) {
+    play.setAttribute('data-icon','u');
+    media.play();
+  } else {
+    play.setAttribute('data-icon','P');
+    media.pause();
+  }
+}
     if (playing) {
         playing = false
         video.pause(); // Останавливает воспроизведение
