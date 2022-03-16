@@ -11,12 +11,25 @@
 	<div class="video-player">
 		<video src="video/video.mp4" poster="images/example.jpg" class="video"></video>
 		<div class="player-controls">
-			<button class="play-button" title="Play">▶</button>
+			<div class="video-progress">
+				<div class="video-progress-filled"></div>
+			</div>
+			<div class="inner-player-controls">
+				<button class="play-button" aria-valuetext="Play">▶</button>
+				<div class="volume-area">
+					<button class="volume-button control-button" aria-valuetext="Volume">
+						<div class="slash"></div>🔈
+					</button>
+					<input type="range" class="volume" min="0" max="1" step="0.01" value="1">
+				</div>
+				<div class="time">
+					<span class="current">0:00</span> / <span class="duration">0:00</span>
+				</div>
+				<button class="fullscreen-button control-button" aria-valuetext="fullscreen">
+					⭾
+				</button>
+			</div>
 		</div>
-		<input type="range" class="volume" min="0" max="1" step="0.01" value="1">
-		<div class="time">
-		  <span class="current">0:00</span> / <span class="duration">0:00</span>
-		  </div>
 	</div>
 	<script src="js/script.js"></script>
 </body>
