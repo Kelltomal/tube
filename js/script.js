@@ -6,6 +6,7 @@ const currentTimeElement = document.querySelector('.current')
 const durationTimeElement = document.querySelector('.duration')
 const progress = videoPlayer.querySelector('.video-progress')
 const progressBar = videoPlayer.querySelector('.video-progress-filled')
+const progressBarSmall = videoPlayer.querySelector('.video-progress-small')
 const volumeButton = videoPlayer.querySelector('.volume-button')
 const fullscreen = videoPlayer.querySelector('.fullscreen-button')
 
@@ -39,7 +40,9 @@ video.addEventListener('timeupdate', currentTime)
 //Progress bar
 video.addEventListener('timeupdate', () => {
   const percentage = (video.currentTime / video.duration) * 100
+  const percentagesmall = (video.currentTime / video.duration) * 100
   progressBar.style.width = `${percentage}%`
+  progressBarSmall.style.width = `${percentage}%`
 })
 
 //change progress bar on click
